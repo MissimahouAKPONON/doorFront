@@ -1,0 +1,7 @@
+{
+  "name": "porte-a-porte",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

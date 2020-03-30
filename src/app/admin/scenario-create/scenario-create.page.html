@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Scénarios</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="door" (ngSubmit)="submit()" novalidate>
+
+        <div class="ion-justify-content-center">
+            <ion-item>
+                <ion-label position="floating">Titre Porte à Porte</ion-label>
+                <ion-input name="title" type="text" formControlName="title"></ion-input>
+            </ion-item>
+            <ion-fab horizontal="start" vertical="bottom"   (click)="addScenario()">
+                <ion-fab-button color="primary" size="large">
+                    <ion-icon name="add"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+            <ion-button type="submit" [disabled]="door.invalid" color="success"><ion-icon name="checkmark"></ion-icon> Save </ion-button>
+
+
+<!--            <ion-button class="ion-align-self-center"  shape="round" >Outline + Round</ion-button>-->
+
+            <ng-container formArrayName="scenarios">
+                <div *ngFor="let scenario of scenarios.controls; index as i">
+                  <ng-container [formGroupName]="i">
+                    <ion-card class="cardcol" style="border-radius:15px">
+                        <ion-item class="close-btn" (click)="removeScenario(i)">
+                            <ion-icon name="close-circle" slot="end"></ion-icon>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Saisissez le sujet</ion-label>
+                            <ion-input name="request" type="text" formControlName="request" required></ion-input>
+                        </ion-item>
+
+                        <ion-card-content>
+                            <ion-item>
+                                <ion-label>Type de Champ Réponse</ion-label>
+                                <ion-select (ionChange)="change($event)" name="answers" formControlName="answers" placeholder="Select type de champ">
+                                    <ion-select-option value="text">Texte</ion-select-option>
+                                    <ion-select-option value="tel">Téléphone</ion-select-option>
+                                    <ion-select-option value="email">Email</ion-select-option>
+                                    <ion-select-option value="number">Nombre</ion-select-option>
+                                    <ion-select-option value="url">Nombre</ion-select-option>
+                                    <ion-select-option value="date">Date</ion-select-option>
+                                    <ion-select-option value="radio">Champs choix</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+
+                            <ion-item *ngIf="!isradio">
+                                <ion-label position="floating">Placeholder</ion-label>
+                                <ion-input type="text" name="placeholder" formControlName="placeholder"></ion-input>
+                            </ion-item>
+
+
+                        </ion-card-content>
+
+
+                    </ion-card>
+                  </ng-container>
+                </div>
+
+            </ng-container>
+        </div>
+    </form>
+</ion-content>
