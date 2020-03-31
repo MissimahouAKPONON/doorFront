@@ -15,7 +15,10 @@ export class RegisterPage implements OnInit {
 
   registerForm = this.fb.group({
     username: ['', Validators.required],
-    email: ['', Validators.required],
+    email: ['', Validators.compose([
+      Validators.required,
+      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+    ])],
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required]
   },

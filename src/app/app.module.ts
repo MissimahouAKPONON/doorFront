@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {AuthService} from "./auth/auth.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./_helpers";
+import { Network } from '@ionic-native/network/ngx';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {JwtInterceptor} from "./_helpers";
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
+      Network,
     StatusBar,
     AuthService,
     SplashScreen,

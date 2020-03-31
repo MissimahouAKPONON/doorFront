@@ -25,6 +25,10 @@ const routes: Routes = [
     canActivate: [AuthGuard], data: { roles: [Role.User]},
     loadChildren: () => import('./user/lists-door/lists-door.module').then( m => m.ListsDoorPageModule)
   },
+  {
+    path: 'network-out',
+    loadChildren: () => import('./main/network-out/network-out.module').then( m => m.NetworkOutPageModule)
+  },
 ];
 
 @NgModule({
