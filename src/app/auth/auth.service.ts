@@ -21,17 +21,13 @@ export class AuthService {
     })
   };
 
-  config = "https://salty-headland-77559.herokuapp.com/api/";
+  config = "https://door-api.herokuapp.com/api";
   constructor(private _httpClient: HttpClient) { }
   get(url: any) {
     return this._httpClient.get(this.config + url);
   }
-  getAll(url: any) {
-    return this._httpClient.get(this.config + url).pipe(
-        map((data: any) => {
-          return data.data;
-        })
-    );
+  getAll() {
+    return this._httpClient.get(`${this.config}/user/doorlist`, { headers: this.httpOptions.headers});
   }
   post(url: any, data: any  ) {
     return this._httpClient.post(this.config + url, data, this.httpOptions);

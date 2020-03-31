@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../auth/auth.service";
-import {AuthenticationService} from "../../_services";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../auth/auth.service';
+import {AuthenticationService} from '../../_services';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-scenario-create',
@@ -18,8 +19,9 @@ export class ScenarioCreatePage implements OnInit {
     return this.door.get('title');
   }
    scenarios = this.door.get('scenarios') as FormArray;
-  isradio: boolean = false;
-  constructor(private fb: FormBuilder, private api: AuthService, private auth: AuthenticationService) {
+  isradio: boolean;
+  constructor(private fb: FormBuilder, private api: AuthService, private auth: AuthenticationService, private router: Router) {
+    this.isradio = false;
 
   }
 
@@ -49,14 +51,17 @@ export class ScenarioCreatePage implements OnInit {
 
   submit() {
     console.log(this.door.value);
-    this.api.post('admin/door', this.door.value).subscribe(data => {
+    this.api.post('/admin/door', this.door.value).subscribe(data => {
       console.log(data);
-      this.auth.presentToast("Porte à Porte Bien Enregistrer !","success")
+      this.auth.presentToast('Porte à Porte Bien Enregistrer !', 'success');
 
     }, error => {
-      this.auth.presentToast(error,"danger")
+      this.auth.presentToast(error, 'danger');
 
-    })
+    });
+  }
+  logout() {
+    this.auth.logout();
   }
 
 }

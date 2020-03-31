@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import {User} from "../_models";
 import {AuthService} from "../auth/auth.service";
 import {ToastController} from "@ionic/angular";
+import {Router} from "@angular/router";
 
 
 
@@ -13,7 +14,7 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-    constructor(private http: HttpClient, private api: AuthService, public toastController: ToastController) {
+    constructor(private http: HttpClient, private api: AuthService, public toastController: ToastController, private router: Router) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -55,6 +56,8 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+        this.router.navigate(['/home']);
+        this.presentToast('Bye Bye !!!' , 'success');
     }
 
     async presentToast(message: string, color: string) {

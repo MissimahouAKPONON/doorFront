@@ -61,7 +61,7 @@ export class RegisterPage implements OnInit {
     let data = this.registerForm.value;
     data.roles = ["user"];
     this.auth.register(data).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       let roles = res.roles;
       if (roles[0] === "ROLE_USER") {
         this.router.navigate(['/lists-door']);
@@ -71,7 +71,7 @@ export class RegisterPage implements OnInit {
         this.auth.presentToast("Bienvenue "+res.username+" !!","success");
       }
     }, (error) => {
-      this.auth.presentToast(error,"danger");
+      this.auth.presentToast(error.error.message,"danger");
     });
     // console.log(data);
 

@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
   login() {
     let data = this.loginForm.value;
     this.auth.login(data).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
       let roles = res.roles;
       if (roles[0] === "ROLE_USER") {
@@ -34,7 +34,8 @@ export class LoginPage implements OnInit {
         this.auth.presentToast("Bienvenue "+res.username+" !!","success");
       }
     }, (error) => {
-      this.auth.presentToast(error,"danger");
+      // console.log(error);
+      this.auth.presentToast(error.error.message,"danger");
     });
   }
 
