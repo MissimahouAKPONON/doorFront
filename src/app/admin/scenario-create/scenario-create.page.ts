@@ -43,16 +43,16 @@ export class ScenarioCreatePage implements OnInit {
     this.scenarios.removeAt(i);
   }
   change(event) {
-    console.log(event.target);
+    // console.log(event.target);
     if (event.target.value === 'radio') {
         this.isradio = true;
     }
   }
 
   submit() {
-    console.log(this.door.value);
+    // console.log(this.door.value);
     this.api.post('/admin/door', this.door.value).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.auth.presentToast('Porte à Porte Bien Enregistrer !', 'success');
 
     }, error => {

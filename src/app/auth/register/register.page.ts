@@ -13,35 +13,18 @@ import {ToastController} from "@ionic/angular";
 })
 export class RegisterPage implements OnInit {
 
-  registerForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    confirmPassword: new FormControl('', Validators.required),
+  registerForm = this.fb.group({
+    username: ['', Validators.required],
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required]
   },
       this.passwordsShouldMatch
     );
 
   constructor(private router:Router, private fb: FormBuilder,private auth: AuthenticationService,public toastController: ToastController) { }
 
-  mustMatch (controlName: string, matchingControlName: string) {
-  return (formGroup: FormGroup) => {
-    const control = formGroup.controls[controlName];
-    const matchingControl = formGroup.controls[matchingControlName];
 
-    if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-      // return if another validator has already found an error on the matchingControl
-      return;
-    }
-
-    // set error on matchingControl if validation fails
-    if (control.value !== matchingControl.value) {
-      matchingControl.setErrors({ mustMatch: true });
-    } else {
-      matchingControl.setErrors(null);
-    }
-  }
-  }
   private passwordsShouldMatch(fGroup: FormGroup) {
     const password: string = fGroup.get('password').value; // get password from our password form control
     const confirmPassword: string = fGroup.get('confirmPassword').value; // get password from our confirmPassword form control
@@ -58,22 +41,22 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
   register() {
-    let data = this.registerForm.value;
-    data.roles = ["user"];
-    this.auth.register(data).subscribe((res) => {
-      // console.log(res);
-      let roles = res.roles;
-      if (roles[0] === "ROLE_USER") {
-        this.router.navigate(['/lists-door']);
-        this.auth.presentToast("Bienvenue "+res.username+" !!","success");
-      } else if (roles[0] === "ROLE_ADMIN") {
-        this.router.navigate(['/scenario-create']);
-        this.auth.presentToast("Bienvenue "+res.username+" !!","success");
-      }
-    }, (error) => {
-      this.auth.presentToast(error.error.message,"danger");
-    });
-    // console.log(data);
+    // let data = this.registerForm.value;
+    // data.roles = ["user"];
+    // this.auth.register(data).subscribe((res) => {
+    //   // console.log(res);
+    //   let roles = res.roles;
+    //   if (roles[0] === "ROLE_USER") {
+    //     this.router.navigate(['/lists-door']);
+    //     this.auth.presentToast("Bienvenue "+res.username+" !!","success");
+    //   } else if (roles[0] === "ROLE_ADMIN") {
+    //     this.router.navigate(['/scenario-create']);
+    //     this.auth.presentToast("Bienvenue "+res.username+" !!","success");
+    //   }
+    // }, (error) => {
+    //   this.auth.presentToast(error.error.message,"danger");
+    // });
+    console.log(this.registerForm);
 
   }
 

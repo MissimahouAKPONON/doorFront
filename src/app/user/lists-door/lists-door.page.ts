@@ -13,7 +13,7 @@ export class ListsDoorPage implements OnInit {
   lists: any[] = [];
   constructor(private router: Router, private api: AuthService, private auth: AuthenticationService) {
     this.api.getAll().subscribe((data: any[]) => {
-      console.log(data);
+      // console.log(data);
       this.lists = data;
 
     });
