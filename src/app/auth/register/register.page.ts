@@ -15,17 +15,14 @@ export class RegisterPage implements OnInit {
 
   registerForm = this.fb.group({
     username: ['', Validators.required],
-    email: ['', Validators.compose([
-      Validators.required,
-      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    ])],
+    email: ['', Validators.required],
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required]
   },
       this.passwordsShouldMatch
     );
 
-  constructor(private router:Router, private fb: FormBuilder,private auth: AuthenticationService,public toastController: ToastController) { }
+  constructor(private router: Router, private fb: FormBuilder, private auth: AuthenticationService, public toastController: ToastController) { }
 
 
   private passwordsShouldMatch(fGroup: FormGroup) {
@@ -45,21 +42,21 @@ export class RegisterPage implements OnInit {
   }
   register() {
     // let data = this.registerForm.value;
-    // data.roles = ["user"];
-    // this.auth.register(data).subscribe((res) => {
-    //   // console.log(res);
-    //   let roles = res.roles;
-    //   if (roles[0] === "ROLE_USER") {
-    //     this.router.navigate(['/lists-door']);
-    //     this.auth.presentToast("Bienvenue "+res.username+" !!","success");
-    //   } else if (roles[0] === "ROLE_ADMIN") {
-    //     this.router.navigate(['/scenario-create']);
-    //     this.auth.presentToast("Bienvenue "+res.username+" !!","success");
-    //   }
-    // }, (error) => {
-    //   this.auth.presentToast(error.error.message,"danger");
-    // });
-    console.log(this.registerForm);
+    data.roles = ["user"];
+    this.auth.register(data).subscribe((res) => {
+      // console.log(res);
+      let roles = res.roles;
+      if (roles[0] === "ROLE_USER") {
+        this.router.navigate(['/lists-door']);
+        this.auth.presentToast("Bienvenue "+res.username+" !!","success");
+      } else if (roles[0] === "ROLE_ADMIN") {
+        this.router.navigate(['/scenario-create']);
+        this.auth.presentToast("Bienvenue "+res.username+" !!","success");
+      }
+    }, (error) => {
+      this.auth.presentToast(error.error.message,"danger");
+    });
+    // console.log(this.registerForm);
 
   }
 
