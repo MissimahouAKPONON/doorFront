@@ -14,11 +14,8 @@ export class HomePage implements OnInit {
   isConnected: boolean;
   alertPresented = false;
     constructor(private router: Router, private auth: AuthenticationService, private network: Network, public alert: AlertController) {
-    // let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-    //     this.presentAlertConfirm();
-    // });
-      // disconnectSubscription.unsubscribe();
-  }
+
+    }
   async presentAlertConfirm() {
     const alert = await this.alert.create({
       header: 'Avertissement',

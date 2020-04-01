@@ -41,7 +41,7 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
   register() {
-    // let data = this.registerForm.value;
+    let data = this.registerForm.value;
     data.roles = ["user"];
     this.auth.register(data).subscribe((res) => {
       // console.log(res);
