@@ -3251,3 +3251,31 @@
     transition: none !important
   }
 }
+
+.roundedInput {
+  --border-color: var(--ion-color-medium-shade);
+  --border-radius: 30px;
+ --border-width: 1px;  
+ --border-style: solid;
+  --box-shadow: 2px gray;
+  --highlight-height: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+ }
+ .roundedInput.ion-invalid.item-has-focus {
+
+  --border-color: var(--ion-color-danger-shade);
+}
+
+.roundedInput.ion-valid.item-has-focus {
+  --border-color: var(--ion-color-success-shade);
+}
+
+.roundedInput.ion-invalid.ion-dirty {
+  --border-color: var(--ion-color-danger-shade);
+}
+
+.roundedInput.ion-valid.ion-dirty {
+  --border-color: var(--ion-color-success-shade);
+}

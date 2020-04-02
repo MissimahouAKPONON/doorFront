@@ -1,11 +1,10 @@
 
 
-<ion-content>
+<ion-content [fullscreen]="true" >
   <div class="btn" style="margin-top: 10%;">
 <!--    <ion-avatar>-->
     <img class="img animated bounceInDown"  src="../../../assets/imgs/undraw_Login_v483.png">
 <!--    </ion-avatar>-->
-
   </div>
   <form  [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-grid>
@@ -16,11 +15,10 @@
           </div>
           <div >
 
-            <ion-item>
-              <ion-label position="floating">Adresse Mail</ion-label>
+            <ion-item class="roundedInput">              <ion-label position="floating">Adresse Mail</ion-label>
               <ion-input name="email" type="email" formControlName="email" required></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item class="roundedInput">
               <ion-label position="floating">Mot de passe</ion-label>
               <ion-input name="password" type="password"  formControlName="password" required></ion-input>
             </ion-item>
@@ -32,10 +30,10 @@
       </ion-row>
     </ion-grid>
   </form>
-  <ion-row>
+  
     <div class="text">
       <p>Vous n'aviez pas de compte,  <a routerLink='/register'>
         inscrivez </a>vous ici</p>
     </div>
-  </ion-row>
+
 </ion-content>

@@ -15,9 +15,9 @@ export class RegisterPage implements OnInit {
 
   registerForm = this.fb.group({
     username: ['', Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
   },
       this.passwordsShouldMatch
     );

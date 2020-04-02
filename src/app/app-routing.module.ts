@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'lists-door',
-    canActivate: [AuthGuard], data: { roles: [Role.User]},
+    // canActivate: [AuthGuard], data: { roles: [Role.User]},
     loadChildren: () => import('./user/lists-door/lists-door.module').then( m => m.ListsDoorPageModule)
   },
   {
