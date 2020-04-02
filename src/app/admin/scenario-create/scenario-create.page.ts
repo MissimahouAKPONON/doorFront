@@ -30,7 +30,7 @@ export class ScenarioCreatePage implements OnInit {
   createScenario(): FormGroup {
     return new FormGroup({
       request: new FormControl('', Validators.required),
-      answers: new FormControl('', Validators.required),
+      answer: new FormControl('', Validators.required),
       placeholder: new FormControl([''])
     });
   }
@@ -51,6 +51,10 @@ export class ScenarioCreatePage implements OnInit {
 
   submit() {
     // console.log(this.door.value);
+
+    if (this.door.value.answer === 'radio') {
+      this.door.value.placeholder = '';
+    }
     this.api.post('/admin/door', this.door.value).subscribe(data => {
       // console.log(data);
       this.auth.presentToast('Porte à Porte Bien Enregistrer !', 'success');

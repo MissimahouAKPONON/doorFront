@@ -14,16 +14,26 @@
     <form [formGroup]="door" (ngSubmit)="submit()" novalidate>
 
         <div class="ion-justify-content-center">
-            <ion-item>
-                <ion-label position="floating">Titre Porte à Porte</ion-label>
-                <ion-input name="title" type="text" formControlName="title"></ion-input>
-            </ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="9">
+                        <ion-item>
+                            <ion-label position="floating">Titre Porte à Porte</ion-label>
+                            <ion-input name="title" type="text" formControlName="title"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-button type="submit" [disabled]="door.invalid" color="success"><ion-icon name="checkmark"></ion-icon> Save </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+
             <ion-fab horizontal="start" vertical="bottom"   (click)="addScenario()">
                 <ion-fab-button color="primary" size="large">
                     <ion-icon name="add"></ion-icon>
                 </ion-fab-button>
             </ion-fab>
-            <ion-button type="submit" [disabled]="door.invalid" color="success"><ion-icon name="checkmark"></ion-icon> Save </ion-button>
 
 
 <!--            <ion-button class="ion-align-self-center"  shape="round" >Outline + Round</ion-button>-->
@@ -43,18 +53,18 @@
                         <ion-card-content>
                             <ion-item>
                                 <ion-label>Type de Champ Réponse</ion-label>
-                                <ion-select (ionChange)="change($event)" name="answers" formControlName="answers" placeholder="Select type de champ">
+                                <ion-select (ionChange)="change($event)" name="answer" formControlName="answer" placeholder="Select type de champ">
                                     <ion-select-option value="text">Texte</ion-select-option>
                                     <ion-select-option value="tel">Téléphone</ion-select-option>
                                     <ion-select-option value="email">Email</ion-select-option>
                                     <ion-select-option value="number">Nombre</ion-select-option>
-                                    <ion-select-option value="url">Nombre</ion-select-option>
+                                    <ion-select-option value="url">Lien</ion-select-option>
                                     <ion-select-option value="date">Date</ion-select-option>
                                     <ion-select-option value="radio">Champs choix</ion-select-option>
                                 </ion-select>
                             </ion-item>
 
-                            <ion-item *ngIf="!isradio">
+                            <ion-item>
                                 <ion-label position="floating">Placeholder</ion-label>
                                 <ion-input type="text" name="placeholder" formControlName="placeholder"></ion-input>
                             </ion-item>

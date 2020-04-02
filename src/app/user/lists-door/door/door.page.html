@@ -1,9 +1,79 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>door</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/lists-door"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="door">{{door?.title | uppercase}}</ion-title>
+    <ion-title *ngIf="!door">{{"not found" | uppercase}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <div *ngIf="door">
+    <ion-card *ngFor="let scenario in door.scenarios; let i = index" class="cardcol" style="border-radius:15px" id="scenario_{{i}}">
+<!--      <ion-item class="close-btn" (click)="removeScenario(i)">-->
+<!--        <ion-icon name="close-circle" slot="end"></ion-icon>-->
+<!--      </ion-item>-->
+      <ion-card-header>
+        <ion-card-subtitle>Scénario {{i}}</ion-card-subtitle>
+        <ion-card-title>{{scenario.request}}</ion-card-title>
+      </ion-card-header>
+
+
+      <ion-card-content>
+        <ion-item *ngIf="scenario.answer === 'text'">
+          <ion-label *ngIf="scenario.placeholder != '' " position="floating">{{scenario.placeholder}}</ion-label>
+          <ion-input type="text" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="scenario.answer === 'tel'">
+          <ion-label *ngIf="scenario.placeholder != '' " position="floating">{{scenario.placeholder}}</ion-label>
+          <ion-input type="tel" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="scenario.answer === 'email'">
+          <ion-label *ngIf="scenario.placeholder != '' " position="floating">{{scenario.placeholder}}</ion-label>
+          <ion-input type="email" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="scenario.answer === 'number'">
+          <ion-label *ngIf="scenario.placeholder != '' " position="floating">{{scenario.placeholder}}</ion-label>
+          <ion-input type="number" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="scenario.answer === 'url'">
+          <ion-label *ngIf="scenario.placeholder != '' " position="floating">{{scenario.placeholder}}</ion-label>
+          <ion-input type="url" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="scenario.answer === 'date'">
+          <ion-label *ngIf="scenario.placeholder != '' " position="floating">{{scenario.placeholder}}</ion-label>
+          <ion-datetime  [placeholder]="scenario.placeholder"></ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="scenario.answer === 'radio'">
+          <ion-label *ngIf="scenario.placeholder != '' " position="floating">{{scenario.placeholder}}</ion-label>
+          <ion-radio-group value="radio">
+            <ion-item>
+              <ion-label>Oui</ion-label>
+              <ion-radio slot="start" color="success" value="oui"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Non</ion-label>
+              <ion-radio slot="start" color="danger" value="non"></ion-radio>
+            </ion-item>
+
+          </ion-radio-group>
+        </ion-item>
+
+      </ion-card-content>
+
+
+    </ion-card>
+
+  </div>
+  <div *ngIf="!door" style="text-align: center; margin-top: 20%">
+    <!--        <ion-text mode="ios">-->
+    <!--            <h1> Bienvenue dans <strong>Porte à Porte</strong></h1>-->
+    <!--        </ion-text>-->
+    <div style="margin-top: 100px;">
+      <img  style="text-align: center" class="img animated  bounceInUp"  src="../../../../assets/imgs/undraw_page_not_found_su7k.png">
+    </div>
+  </div>
 
 </ion-content>
