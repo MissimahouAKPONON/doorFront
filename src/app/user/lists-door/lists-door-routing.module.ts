@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ListsDoorPage
   },
   {
-    path: 'door:id',
+    path: 'door/:id',
     loadChildren: () => import('./door/door.module').then( m => m.DoorPageModule)
   }
 ];

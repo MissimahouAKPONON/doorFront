@@ -22,6 +22,9 @@ export class ListsDoorPage implements OnInit {
   ngOnInit() {
 
   }
+  goToDoor(id: number) {
+    return this.router.navigate(['/lists-door/door/',id]);
+  }
 
   logout() {
     this.auth.logout();

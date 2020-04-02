@@ -24,8 +24,9 @@ export class AuthService {
   config = "https://door-api.herokuapp.com/api";
   constructor(private _httpClient: HttpClient) { }
   get(url: any) {
-    return this._httpClient.get(this.config + url);
+    return this._httpClient.get(`${this.config}/${url}`, { headers: this.httpOptions.headers}
   }
+  
   getAll() {
     return this._httpClient.get(`${this.config}/user/doorlist`, { headers: this.httpOptions.headers});
   }
