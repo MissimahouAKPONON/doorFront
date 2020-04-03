@@ -4,10 +4,17 @@ ion-fab{
   margin-left: 10%;
   margin-bottom: 5%;
 }
-ion-button{
-  position: fixed;
-  display: flex;
-  float: right;
-  margin-right: 37%;
-  margin-left: 37%;
+//ion-btn{
+//  position: fixed;
+//  display: flex;
+//  float: right;
+//  margin-right: 37%;
+//  margin-left: 37%;
+//}
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1.18fr;
+    margin-bottom: 20px;
+
 }

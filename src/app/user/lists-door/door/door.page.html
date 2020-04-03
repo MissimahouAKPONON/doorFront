@@ -10,7 +10,7 @@
 
 <ion-content [fullscreen]="true">
   <div *ngIf="door">
-    <ion-card *ngFor="let scenario in door.scenarios; let i = index" class="cardcol" style="border-radius:15px" id="scenario_{{i}}">
+    <ion-card *ngFor="let scenario of door.scenarios; let i = index" class="cardcol" style="border-radius:15px" id="scenario_{{i}}">
 <!--      <ion-item class="close-btn" (click)="removeScenario(i)">-->
 <!--        <ion-icon name="close-circle" slot="end"></ion-icon>-->
 <!--      </ion-item>-->
@@ -60,10 +60,11 @@
 
           </ion-radio-group>
         </ion-item>
+        <ion-chip color="primary" style="text-align: center" (click)="goTo(i)">
+          <ion-icon slot="icon-only" md="chevron-forward-sharp" ios="chevron-forward-outline" color="dark" style="fill: black;"></ion-icon>
+        </ion-chip>
 
       </ion-card-content>
-
-
     </ion-card>
 
   </div>
@@ -74,6 +75,8 @@
     <div style="margin-top: 100px;">
       <img  style="text-align: center" class="img animated  bounceInUp"  src="../../../../assets/imgs/undraw_page_not_found_su7k.png">
     </div>
+
+
   </div>
 
 </ion-content>

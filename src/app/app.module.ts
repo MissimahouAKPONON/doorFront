@@ -12,12 +12,13 @@ import {AuthService} from "./auth/auth.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./_helpers";
 import { Network } from '@ionic-native/network/ngx';
+import {DoorPageModule} from "./user/lists-door/door/door.module";
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, DoorPageModule],
   schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
       Network,
